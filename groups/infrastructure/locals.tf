@@ -1,5 +1,5 @@
 locals {
-  stack_name     = "identity-service"
+  stack_name     = "identity"
   stack_fullname = "${local.stack_name}-stack"
   name_prefix    = "${local.stack_name}-${var.environment}"
 
