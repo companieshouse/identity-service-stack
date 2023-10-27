@@ -1,0 +1,9 @@
+environment = "phoenix1"
+aws_profile = "development-eu-west-2"
+enable_container_insights = true
+
+ec2_key_pair_name = "chs-phoenix1"
+
+asg_max_instance_count = 0
+asg_min_instance_count = 0
+asg_desired_instance_count = 0
