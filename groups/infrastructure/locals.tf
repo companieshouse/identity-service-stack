@@ -10,4 +10,7 @@ locals {
   kms_key_alias              = local.stack_secrets["kms_key_alias"]
   vpc_name                   = local.stack_secrets["vpc_name"]
   notify_topic_slack_endpoint = local.stack_secrets["notify_topic_slack_endpoint"]
+  parameter_store_secrets    = {
+    "vpc-name"                 = local.stack_secrets["vpc_name"]
+  }
 }
