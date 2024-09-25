@@ -1,4 +1,4 @@
-environment = "sandbox-staging"
+environment = "stagsbox"
 aws_profile = "staging-eu-west-2"
 enable_container_insights = true
 
