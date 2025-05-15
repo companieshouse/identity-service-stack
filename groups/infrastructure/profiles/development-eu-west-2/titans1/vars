@@ -1,0 +1,5 @@
+environment = "titans1"
+aws_profile = "development-eu-west-2"
+enable_container_insights = true
+
+ec2_key_pair_name = "chs-titans1"
