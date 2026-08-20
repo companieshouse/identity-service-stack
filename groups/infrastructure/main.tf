@@ -47,10 +47,9 @@ module "ecs-cluster" {
 }
 
 module "secrets" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/ecs/secrets?ref=1.0.411"
+  source = "git@github.com:companieshouse/terraform-modules//aws/parameter-store?ref=1.0.411"
 
   name_prefix = local.name_prefix
-  environment = var.environment
   kms_key_id  = data.aws_kms_key.stack_configs.id
   secrets     = local.parameter_store_secrets
 }
