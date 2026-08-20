@@ -20,7 +20,7 @@ terraform {
   backend "s3" {}
 }
 
-module "ecs-cluster" {
+module "ecs_cluster" {
   source = "git@github.com:companieshouse/terraform-modules//aws/ecs/ecs-cluster?ref=1.0.411"
 
   aws_profile = var.aws_profile
@@ -46,10 +46,7 @@ module "ecs-cluster" {
   notify_topic_slack_endpoint = local.notify_topic_slack_endpoint
 }
 
-module "secrets" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/parameter-store?ref=1.0.411"
-
-  name_prefix = local.name_prefix
-  kms_key_id  = data.aws_kms_key.stack_configs.id
-  secrets     = local.parameter_store_secrets
+moved {
+  from = module.ecs-cluster
+  to   = module.ecs_cluster
 }
