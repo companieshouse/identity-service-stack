@@ -21,9 +21,8 @@ terraform {
 }
 
 module "ecs_cluster" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/ecs/ecs-cluster?ref=1.0.411"
+  source = "git@github.com:companieshouse/terraform-modules//aws/ecs/ecs-cluster?ref=1.0.412"
 
-  aws_profile = var.aws_profile
   environment = var.environment
   name_prefix = local.name_prefix
   stack_name  = local.stack_name
@@ -40,13 +39,30 @@ module "ecs_cluster" {
 
   scaledown_schedule     = var.asg_scaledown_schedule
   scaleup_schedule       = var.asg_scaleup_schedule
-  enable_asg_autoscaling = var.enable_asg_autoscaling
 
   enable_container_insights   = var.enable_container_insights
   notify_topic_slack_endpoint = local.notify_topic_slack_endpoint
+
+  default_tags = merge(
+    module.iac_tags.tags,
+    module.owner_tags.tags,
+  )
 }
 
 moved {
   from = module.ecs-cluster
   to   = module.ecs_cluster
+}
+
+module "iac_tags" {
+  source = "git@github.com:companieshouse/terraform-modules//aws/tagging/iac?ref=tags/1.0.412"
+
+  group           = "infrastructure"
+  source_code_url = "https://github.com/companieshouse/identity-service-stack"
+}
+
+module "owner_tags" {
+  source = "git@github.com:companieshouse/terraform-modules//aws/tagging/owner?ref=tags/1.0.412"
+
+  platform_owner    = "platform"
 }
